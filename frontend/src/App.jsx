@@ -1,35 +1,37 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React from "react";
 
-function App() {
-  const [count, setCount] = useState(0)
+import { Route, Routes } from "react-router-dom";
+import Home from "./pages/Home";
+import Shorts from "./pages/Shorts";
+import PapayaMusic from "./pages/PapayaMusic";
+import Subscriptions from "./pages/Subscriptions";
+import DefaultLayout from "./layouts/DefaultLayout";
+import Library from "./pages/Library";
+import History from "./pages/History";
+import WatchLater from "./pages/WatchLater";
+import Download from "./pages/Download";
+import YourVideo from "./pages/YourVideo";
+import NotFound from "./pages/NotFound";
 
+const App = () => {
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+    <div className="app">
+      <Routes>
+        <Route element={<DefaultLayout />}>
+          <Route path="/" element={<Home />} />
+          <Route path="/shorts" element={<Shorts />} />
+          <Route path="/subscriptions" element={<Subscriptions />} />
+          <Route path="/papayamusic" element={<PapayaMusic />} />
+          <Route path="/library" element={<Library />} />
+          <Route path="/history" element={<History />} />
+          <Route path="/yourvideos" element={<YourVideo />} />
+          <Route path="/watchlater" element={<WatchLater />} />
+          <Route path="/download" element={<Download />} />
+        </Route>
+        <Route path="/*" element={<NotFound />} />
+      </Routes>
+    </div>
+  );
+};
 
-export default App
+export default App;
